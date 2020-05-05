@@ -1,7 +1,7 @@
 ﻿<ModMetaData>
-	<name>[1.1] Deep Scanner Patch</name>
+	<name>Deep Scanner Settings</name>
 	<author>Proxyer</author>
-	<packageId>proxyer.deepscannerpatch</packageId>
+	<packageId>proxyer.deepscannersettings</packageId>
 	<supportedVersions>
 		<li>1.1</li>
 	</supportedVersions>

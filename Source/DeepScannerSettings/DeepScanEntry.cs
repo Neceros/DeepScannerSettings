@@ -6,18 +6,19 @@ using Verse;
 
 namespace DeepScannerSettings
 {
+   /*
   public class DeepScanEntry : IExposable
   {
-    public ThingDef defName;
+    public ThingDef thingDef;
     public float commonality;
     public float numberMined;
     public IEnumerable<int> veinSizeRange;
 
     public DeepScanEntry() { }
 
-    public DeepScanEntry(ThingDef defName, float commonality, float numberMined, IEnumerable<int> veinSizeRange)
+    public DeepScanEntry(ThingDef thingDef, float commonality, float numberMined, IEnumerable<int> veinSizeRange)
     {
-      this.defName = defName;
+      this.thingDef = thingDef;
       this.commonality = commonality;
       this.numberMined = numberMined;
       this.veinSizeRange = veinSizeRange;
@@ -25,10 +26,10 @@ namespace DeepScannerSettings
 
     public void ExposeData()
     {
-      Scribe_Defs.Look(ref defName, "defName");
+      Scribe_Defs.Look(ref thingDef, "thingDef");
       Scribe_Values.Look(ref commonality, "commonality");
       Scribe_Values.Look(ref numberMined, "numberMined");
       Scribe_Values.Look(ref veinSizeRange, "veinSizeRange");
     }
-  }
+  } */
 }

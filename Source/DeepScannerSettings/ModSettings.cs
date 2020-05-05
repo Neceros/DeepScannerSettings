@@ -9,12 +9,12 @@ namespace DeepScannerSettings
 {
   public class DSSSettings : ModSettings
   {
-    public static DeepScanEntry DeepScanDefs =
+    public static List<ThingDef> DeepScanDefs;
 
     public override void ExposeData()
     {
       base.ExposeData();
-      Scribe_Collections.Look(ref DeepScanDefs, "DeepScanDefs", LookMode.Deep);
+      Scribe_Collections.Look(ref DeepScanDefs, "DeepScanDefs");
     }
   }
 
@@ -35,7 +35,7 @@ namespace DeepScannerSettings
 
       // lister.ColumnWidth = canvas.width - 80f;
       float height = canvas.y + 800f; // set height here
-      Rect viewRect = new Rect(0f, 0f, canvas.width - 260f, height);
+      Rect viewRect = new Rect(0f, 0f, canvas.width - 600f, height);
 
 
       lister.Begin(canvas);
@@ -45,8 +45,6 @@ namespace DeepScannerSettings
       lister.Gap(12f);
 
 
-      lister.Gap(24f);
-      //resetDefaults = lister.ButtonText("ResetValues".Translate());
 
       lister.End();
       lister.EndScrollView(ref viewRect);

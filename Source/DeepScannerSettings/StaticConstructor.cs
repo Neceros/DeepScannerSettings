@@ -18,7 +18,13 @@ namespace DeepScannerSettings
 
     public static void SetOriginalValues()
     {
-      
+      List<ThingDef> oreList = DefDatabase<ThingDef>.AllDefs.Where(o => o.deepCommonality > 0).ToList();
+      Log.Warning(oreList.Count().ToString());
+
+      foreach (ThingDef item in oreList)
+      {
+        Log.Warning(item.defName + " is a deep ore.");
+      }
     }
   }
 }
