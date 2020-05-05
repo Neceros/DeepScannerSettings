@@ -1,0 +1,25 @@
+﻿<ModMetaData>
+	<name>[1.1] Deep Scanner Patch</name>
+	<author>Proxyer</author>
+	<packageId>proxyer.deepscannerpatch</packageId>
+	<supportedVersions>
+		<li>1.1</li>
+	</supportedVersions>
+	<loadAfter>
+		<li>Ludeon.RimWorld</li>
+	</loadAfter>
+	<description><![CDATA[
+<color=#5AA9D6><size=17>Description :</size></color>
+Expand the range size of resources that can be scanned by the <b>ground-penetrating scanner</b>. Underground resources will be discovered more extensively.
+
+
+<color=#5AA9D6><size=17>Mod list order :</size></color>
+This mod is a patch mod, so always place it at the bottom of the mod list.
+
+
+<color=#5AA9D6><size=17>Existing save data :</size></color>
+Since this mod only add patch operations, it can be safely installed in existing save data. You can also safely remove the mod at any time.
+
+
+ ]]></description>
+</ModMetaData>
