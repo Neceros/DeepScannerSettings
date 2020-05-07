@@ -19,11 +19,13 @@ namespace DeepScannerSettings
     public static void SetOriginalValues()
     {
       List<ThingDef> oreList = DefDatabase<ThingDef>.AllDefs.Where(o => o.deepCommonality > 0).ToList();
-      Log.Warning(oreList.Count().ToString());
 
-      foreach (ThingDef item in oreList)
+      for (int i = 0; i < oreList.Count(); ++i)
       {
-        Log.Warning(item.defName + " is a deep ore.");
+        DSSSettings.DeepOreDefs.Add(oreList[i]);
+        DSSSettings.Commonality.Add(oreList[i].deepCommonality);
+        DSSSettings.MinedAmountPerChunk.Add(oreList[i].deepCountPerPortion);
+        DSSSettings.VeinSizeRange.Add(oreList[i].deepLumpSizeRange);
       }
     }
   }

@@ -6,7 +6,7 @@ using Verse;
 
 namespace DeepScannerSettings
 {
-   /*
+  /*
   public class DeepScanEntry : IExposable
   {
     public ThingDef thingDef;
