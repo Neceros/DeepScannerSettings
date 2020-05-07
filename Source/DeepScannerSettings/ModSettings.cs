@@ -94,12 +94,15 @@ namespace DeepScannerSettings
       // HediffDef.Named("SmokeleafHigh").stages.Where((HediffStage stage) => stage.capMods.Any((PawnCapacityModifier mod) => mod.capacity == PawnCapacityDefOf.Consciousness)).First().capMods.Where((PawnCapacityModifier mod) => mod.capacity == PawnCapacityDefOf.Consciousness).First().offset = RSModSettings.amountCramped;
       // ThingDef.Named("NEC_ReinforcedWall").statBases.Where((StatModifier statBase) => statBase.stat == StatDefOf.MaxHitPoints).First().value = RWModSettings.WallHitPoints;
       // SRWSettings.ReinforcedWall.statBases.Where((StatModifier statBase) => statBase.stat == StatDefOf.MaxHitPoints).First().value = SRWSettings.WallHitPoints;
-      for (int i = 0; i < DSSSettings.DeepOreDefs.Count(); ++i)
+      if (DSSSettings.DeepOreDefs.Count() > 0)
       {
-        ThingDef oreDef = DSSSettings.DeepOreDefs[i];
-        oreDef.deepCommonality = DSSSettings.Commonality[i];
-        oreDef.deepCountPerPortion = DSSSettings.MinedAmountPerChunk[i];
-        oreDef.deepLumpSizeRange = DSSSettings.VeinSizeRange[i];
+        for (int i = 0; i < DSSSettings.DeepOreDefs.Count(); ++i)
+        {
+          ThingDef oreDef = DSSSettings.DeepOreDefs[i];
+          oreDef.deepCommonality = DSSSettings.Commonality[i];
+          oreDef.deepCountPerPortion = DSSSettings.MinedAmountPerChunk[i];
+          oreDef.deepLumpSizeRange = DSSSettings.VeinSizeRange[i];
+        }
       }
     }
 
