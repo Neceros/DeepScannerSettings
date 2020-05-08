@@ -9,15 +9,23 @@ namespace DeepScannerSettings
 {
   public class DSSSettings : ModSettings
   {
-    public static List<ThingDef> DeepOreDefs = new List<ThingDef>();
+    public static List<string> DeepOreDefNames = new List<string>();
     public static List<float> Commonality = new List<float>();
     public static List<int> MinedAmountPerChunk = new List<int>();
     public static List<IntRange> VeinSizeRange = new List<IntRange>();
 
+    public static void ClearSettings()
+    {
+      DeepOreDefNames.Clear();
+      Commonality.Clear();
+      MinedAmountPerChunk.Clear();
+      VeinSizeRange.Clear();
+    }
+
     public override void ExposeData()
     {
       base.ExposeData();
-      Scribe_Collections.Look(ref DeepOreDefs, "DeepOreDefs", LookMode.Def);
+      Scribe_Collections.Look(ref DeepOreDefNames, "DeepOreDefNames");
       Scribe_Collections.Look(ref Commonality, "Commonality");
       Scribe_Collections.Look(ref MinedAmountPerChunk, "MinedAmountPerChunk");
       Scribe_Collections.Look(ref VeinSizeRange, "VeinSizeRange");
@@ -39,7 +47,7 @@ namespace DeepScannerSettings
     {
       Listing_Standard lister = new Listing_Standard();
 
-      float numOfItems = DSSSettings.DeepOreDefs.Count() * 220f;
+      float numOfItems = DSSSettings.DeepOreDefNames.Count() * 220f;
       float height = canvas.y + numOfItems;
       Rect viewRect = new Rect(0f, 0f, canvas.width - 260f, height);
 
@@ -47,9 +55,11 @@ namespace DeepScannerSettings
       lister.BeginScrollView(new Rect(120f, 0f, canvas.width - 240f, canvas.height), ref scrollPosition, ref viewRect);
       lister.Gap();
 
-      for (int i = 0; i < DSSSettings.DeepOreDefs.Count(); ++i)
+      for (int i = 0; i < DSSSettings.DeepOreDefNames.Count(); ++i)
       {
-        lister.Settings_Header(DSSSettings.DeepOreDefs[i].label, Color.clear, GameFont.Medium, TextAnchor.MiddleLeft);
+        string oreLabel = ThingDef.Named(DSSSettings.DeepOreDefNames[i]).label;
+
+        lister.Settings_Header(Utils.StringToTitleCase(oreLabel), Color.clear, GameFont.Medium, TextAnchor.MiddleLeft);
         lister.GapLine();
 
         float c = DSSSettings.Commonality[i];
@@ -57,10 +67,10 @@ namespace DeepScannerSettings
         int r1 = DSSSettings.VeinSizeRange[i].min;
         int r2 = DSSSettings.VeinSizeRange[i].max;
 
-        lister.Settings_Numericbox("Commonality".Translate(), ref c, 420, 12f);
-        lister.Settings_IntegerBox("MinedAmountPerChunk".Translate(), ref m, 420, 12);
-        lister.Settings_IntegerBox("VeinSizeRangeMin".Translate(), ref r1, 420, 12f);
-        lister.Settings_IntegerBox("VeinSizeRangeMax".Translate(), ref r2, 420, 12f);
+        lister.Settings_Numericbox("DSSCommonality".Translate() + " " + oreLabel, ref c, 420, 12f);
+        lister.Settings_IntegerBox("DSSMinedAmountPerChunk".Translate(), ref m, 420, 12);
+        lister.Settings_IntegerBox("DSSVeinSizeRangeMin".Translate(), ref r1, 420, 12f);
+        lister.Settings_IntegerBox("DSSVeinSizeRangeMax".Translate(), ref r2, 420, 12f);
 
         DSSSettings.Commonality[i] = c;
         DSSSettings.MinedAmountPerChunk[i] = m;
@@ -84,7 +94,7 @@ namespace DeepScannerSettings
 
     public override string SettingsCategory()
     {
-      return "MenuTitle".Translate();
+      return "DSSMenuTitle".Translate();
     }
 
     public static void UpdateChanges()
@@ -94,21 +104,16 @@ namespace DeepScannerSettings
       // HediffDef.Named("SmokeleafHigh").stages.Where((HediffStage stage) => stage.capMods.Any((PawnCapacityModifier mod) => mod.capacity == PawnCapacityDefOf.Consciousness)).First().capMods.Where((PawnCapacityModifier mod) => mod.capacity == PawnCapacityDefOf.Consciousness).First().offset = RSModSettings.amountCramped;
       // ThingDef.Named("NEC_ReinforcedWall").statBases.Where((StatModifier statBase) => statBase.stat == StatDefOf.MaxHitPoints).First().value = RWModSettings.WallHitPoints;
       // SRWSettings.ReinforcedWall.statBases.Where((StatModifier statBase) => statBase.stat == StatDefOf.MaxHitPoints).First().value = SRWSettings.WallHitPoints;
-      if (DSSSettings.DeepOreDefs.Count() > 0)
+      if (DSSSettings.DeepOreDefNames.Count() > 0)
       {
-        for (int i = 0; i < DSSSettings.DeepOreDefs.Count(); ++i)
+        for (int i = 0; i < DSSSettings.DeepOreDefNames.Count(); ++i)
         {
-          ThingDef oreDef = DSSSettings.DeepOreDefs[i];
+          ThingDef oreDef = ThingDef.Named(DSSSettings.DeepOreDefNames[i]);
           oreDef.deepCommonality = DSSSettings.Commonality[i];
           oreDef.deepCountPerPortion = DSSSettings.MinedAmountPerChunk[i];
           oreDef.deepLumpSizeRange = DSSSettings.VeinSizeRange[i];
         }
       }
-    }
-
-    private static float RoundToNearestHundredth(float val)
-    {
-      return (float)Math.Round(val * 100, MidpointRounding.AwayFromZero) / 100;
     }
   }
 }

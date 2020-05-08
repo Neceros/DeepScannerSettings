@@ -5,7 +5,7 @@ using Verse;
 namespace DeepScannerSettings
 {
   [StaticConstructorOnStartup]
-  public static class DialogSettings
+  public static class Utils
   {
     private static float RoundToNearestHalf(float val)
     {
@@ -203,6 +203,16 @@ namespace DeepScannerSettings
       Widgets.Label(rect, label);
       Text.Font = textSize;
       Text.Anchor = anchorTmp;
+    }
+
+    public static string StringToTitleCase(string text)
+    {
+      if (text.Length == 1)
+        return text.ToUpper();
+      else if (text.Length > 1)
+        return char.ToUpper(text[0]) + text.Substring(1);
+      else
+        return text;
     }
 
     public static readonly Texture2D ButtonBGAtlas = ContentFinder<Texture2D>.Get("UI/Widgets/ButtonBG", true);
