@@ -1,25 +1,20 @@
 ﻿<ModMetaData>
 	<name>Deep Scanner Settings</name>
-	<author>Proxyer</author>
-	<packageId>proxyer.deepscannersettings</packageId>
+	<author>Neceros</author>
+	<packageId>neceros.deepscannersettings</packageId>
 	<supportedVersions>
 		<li>1.1</li>
 	</supportedVersions>
 	<loadAfter>
 		<li>Ludeon.RimWorld</li>
 	</loadAfter>
-	<description><![CDATA[
-<color=#5AA9D6><size=17>Description :</size></color>
-Expand the range size of resources that can be scanned by the <b>ground-penetrating scanner</b>. Underground resources will be discovered more extensively.
+	<description>What lies beneath the soles of feet,
+is tread upon but never squeeks,
+is always there... even while you sleep.
 
-
-<color=#5AA9D6><size=17>Mod list order :</size></color>
-This mod is a patch mod, so always place it at the bottom of the mod list.
-
-
-<color=#5AA9D6><size=17>Existing save data :</size></color>
-Since this mod only add patch operations, it can be safely installed in existing save data. You can also safely remove the mod at any time.
-
-
- ]]></description>
+Though we don't know what's foul below,
+the evil creeps through broken floor,
+and it replaces fun and joy,
+for wants and needs no one can afford.
+</description>
 </ModMetaData>
